@@ -1,0 +1,40 @@
+# Install and load the flexdashboard package
+install.packages("flexdashboard")
+library(flexdashboard)
+
+# Next, we'll create a new flexdashboard using the flex_dashboard function
+# and specify the layout and appearance of the dashboard
+flex_dashboard(
+  title = "My Dashboard",
+  theme = "flatly",
+  orientation = "rows",
+  font = "Roboto",
+  source_code = TRUE,
+  background = "white"
+)
+
+# Add some content to the dashboard using the dashboardBody function
+# And specify the layout and appearance of the content
+dashboardBody(
+  fluidRow(
+    box(plotOutput("plot1", width = "100%"), title = "Plot 1"),
+    box(plotOutput("plot2", width = "100%"), title = "Plot 2")
+  )
+)
+
+# We can also add a navigation bar to the dashboard using the dashboardHeader function
+dashboardHeader(
+  navbarMenu("Menu", tabPanel("Tab 1", icon = icon("bar-chart")), tabPanel("Tab 2", icon = icon("table")))
+)
+
+# Finally, we'll specify the server logic for the dashboard using the dashboardServer function
+dashboardServer(
+  function(input, output) {
+    output$plot1 <- renderPlot({
+      # code to generate plot 1 goes here
+    })
+    output$plot2 <- renderPlot({
+      # code to generate plot 2 goes here
+    })
+  }
+)
