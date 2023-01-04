@@ -1,0 +1,14 @@
+# load the data into R
+data <- read.csv("sample_data.csv")
+
+# Next, check for missing values and remove any rows that have missing values
+data <- data[complete.cases(data), ]
+
+# Now,  check for and remove any duplicate rows
+data <- unique(data)
+
+# Convert any variables that are stored as characters to numerical values
+data$numeric_column <- as.numeric(as.character(data$numeric_column))
+
+# Rename any columns that have unclear or confusing names
+names(data)[names(data) == "old_name"] <- "new_name"
