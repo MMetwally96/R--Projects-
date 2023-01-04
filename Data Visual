@@ -1,0 +1,27 @@
+# Install and load the ggplot2 package
+install.packages("ggplot2")
+library(ggplot2)
+
+# load sample data into R
+data <- read.csv("sample_data.csv")
+
+# Create a simple bar chart using the ggplot function
+# and the geom_bar layer
+ggplot(data, aes(x = factor(x), y = y)) +
+  geom_bar(stat = "identity")
+
+# We can also create a scatter plot using the geom_point layer
+ggplot(data, aes(x = x, y = y)) +
+  geom_point()
+
+# To create a line chart, use the geom_line layer
+ggplot(data, aes(x = x, y = y)) +
+  geom_line()
+
+# To create a histogram, use the geom_histogram layer
+ggplot(data, aes(x = x)) +
+  geom_histogram()
+
+# Create a box plot using the geom_boxplot layer
+ggplot(data, aes(x = factor(x), y = y)) +
+  geom_boxplot()
